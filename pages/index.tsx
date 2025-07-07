@@ -1,22 +1,9 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import Cookie from "js-cookie";
 import styles from "@/styles/Home.module.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import PageTemplate from "@/components/PageTemplate/PageTemplate";
 
 export default function Home() {
-  return (
-    <>
-      <div>hello</div>
-    </>
-  );
+  return <PageTemplate></PageTemplate>;
 }
