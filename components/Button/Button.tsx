@@ -7,7 +7,6 @@ type ButtonProps = {
 };
 
 const Button = ({ title, type = "DEFAULT", onClick }: ButtonProps) => {
-  // TODO: prainvestiguot!!!!
   return (
     <button onClick={onClick} className={`${styles.main} ${styles[type]}`}>
       {title}

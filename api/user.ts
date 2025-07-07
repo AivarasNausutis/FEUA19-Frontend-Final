@@ -20,3 +20,32 @@ export const loginUser = async ({ email, password }: LoginProps) => {
     throw err;
   }
 };
+
+type RegisterProps = {
+  email: string;
+  password: string;
+  name: string;
+};
+
+export const registerUser = async ({
+  email,
+  password,
+  name,
+}: RegisterProps) => {
+  try {
+    const RegisterBody = {
+      name: name,
+      email: email,
+      password: password,
+    };
+
+    const response = await axios.post(
+      `${config.BASE_URL}/register`,
+      RegisterBody
+    );
+
+    return response;
+  } catch (err) {
+    throw err;
+  }
+};
