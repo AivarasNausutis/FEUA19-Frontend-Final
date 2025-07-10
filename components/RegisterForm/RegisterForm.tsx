@@ -20,7 +20,7 @@ const RegisterForm = () => {
         email: email,
         password: password,
       });
-      Cookies.set("Forum-user-jwt-token", response.data.jwt);
+      Cookies.set("Forum-user-jwt-token", response.data.jwt_token);
       router.push("/login");
       setErrorMessage("");
     } catch (err) {

@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Cookie from "js-cookie";
-import styles from "@/styles/Home.module.css";
 import PageTemplate from "@/components/PageTemplate/PageTemplate";
+import QuestionList from "@/components/QuestionList/QuestionList";
 
 export default function Home() {
-  return <PageTemplate></PageTemplate>;
+  const router = useRouter();
+
+  return (
+    <PageTemplate>
+      <QuestionList />
+    </PageTemplate>
+  );
 }

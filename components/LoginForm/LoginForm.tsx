@@ -16,7 +16,7 @@ const LoginForm = () => {
     try {
       const response = await loginUser({ email: email, password: password });
 
-      Cookies.set("Forum-user-jwt-token", response.data.jwt);
+      Cookies.set("Forum-user-jwt-token", response.data.jwt_token);
       router.push("/");
       setErrorMessage("");
     } catch (err) {

@@ -1,4 +1,36 @@
 .container {
   height: 90px;
   background-color: #f4f0e6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+.logo {
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+.logo:hover {
+  font-weight: 550;
+  font-size: 1.9rem;
+}
+
+.container nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.container nav ul li a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
+}
+.container nav ul li a:hover {
+  font-weight: 550;
+  font-size: 1.3rem;
+}
+
+.container nav {
+  display: flex;
 }
