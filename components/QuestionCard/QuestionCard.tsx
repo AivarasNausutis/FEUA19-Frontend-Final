@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
+import { getItem, setItem } from "@/utils/localstorage";
 
 export type QuestionCardProps = {
   question_text: string;
@@ -8,10 +9,17 @@ export type QuestionCardProps = {
 };
 
 const QuestionCard = ({ question_text, date, id }: QuestionCardProps) => {
-  const [likeCount, setLikeCount] = React.useState(0);
+  const [count, setCount] = useState(() => {
+    const item = getItem(`count_${id}`);
+    return (item as number) || 0;
+  });
 
-  const handleLike = () => setLikeCount(likeCount + 1);
-  const handleDislike = () => setLikeCount(likeCount - 1);
+  useEffect(() => {
+    setItem(`count_${id}`, count);
+  }, [count, id]);
+
+  const handleLike = () => setCount((prev) => prev + 1);
+  const handleDislike = () => setCount((prev) => prev - 1);
 
   return (
     <div className={styles.card}>
@@ -26,14 +34,14 @@ const QuestionCard = ({ question_text, date, id }: QuestionCardProps) => {
         <div
           className={
             styles.count +
-            (likeCount > 0
+            (count > 0
               ? " " + styles.plus
-              : likeCount < 0
+              : count < 0
               ? " " + styles.minus
               : "")
           }
         >
-          {likeCount}
+          {count}
         </div>
         <div onClick={handleDislike} className={styles.dislike}></div>
       </div>
