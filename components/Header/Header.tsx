@@ -1,22 +1,38 @@
 import styles from "./styles.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Cookie from "js-cookie";
 
-const Header = () => {
+type HeaderProps = {
+  type?: "SHOW" | "NOSHOW";
+};
+
+const Header = ({ type = "SHOW" }: HeaderProps) => {
   const router = useRouter();
+
+  const handleLogout = () => {
+    Cookie.remove("Forum-user-jwt-token");
+  };
+
   return (
     <>
       <div className={styles.container}>
         <div onClick={() => router.push("/")} className={styles.logo}>
           Paragraph
         </div>
-        <nav>
+        <nav className={`${styles.nav} ${styles[type]}`}>
           <ul>
             <li>
-              <Link href="/question">Ask a question</Link>
+              <a href="/question">Ask a question</a>
             </li>
             <li>
-              <Link href="/login">Log Out</Link>
+              <a
+                href="/login"
+                onClick={handleLogout}
+                className={styles.navLink}
+              >
+                Log Out
+              </a>
             </li>
           </ul>
         </nav>

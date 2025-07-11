@@ -16,6 +16,7 @@ const QuestionList = ({ questions }: QuestionListProps) => {
             id={q.id}
             question_text={q.question_text}
             date={new Date(q.date)}
+            question={q}
           />
         );
       })}

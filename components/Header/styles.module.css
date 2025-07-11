@@ -12,7 +12,10 @@
 }
 .logo:hover {
   font-weight: 550;
-  font-size: 1.9rem;
+}
+
+.nav {
+  display: flex;
 }
 
 .container nav ul {
@@ -28,9 +31,27 @@
 }
 .container nav ul li a:hover {
   font-weight: 550;
-  font-size: 1.3rem;
 }
 
-.container nav {
+.navLink {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+.navLink:hover {
+  font-weight: 550;
+  color: #0056b3;
+}
+
+.SHOW {
   display: flex;
+}
+
+.NOSHOW {
+  display: none;
 }

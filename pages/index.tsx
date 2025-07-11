@@ -5,6 +5,7 @@ import { QuestionType } from "../types/Question";
 import { getAllQuestions } from "@/api/question";
 import QuestionList from "@/components/QuestionList/QuestionList";
 import PageTemplate from "@/components/PageTemplate/PageTemplate";
+import { cleanupQuestionCounts } from "@/utils/localstorage";
 
 export default function Home() {
   const router = useRouter();
@@ -16,9 +17,13 @@ export default function Home() {
       const jwtToken = Cookie.get("Forum-user-jwt-token");
 
       const result = await getAllQuestions({ jwt_token: jwtToken! });
+      const questions = result.data.questions;
 
-      setQuestions(result.data.questions);
-    } catch (err) {
+      const questionIds = questions.map((q: QuestionType) => q.id);
+      cleanupQuestionCounts(questionIds);
+
+      setQuestions(questions);
+    } catch (err: any) {
       console.log(err);
 
       if (err.status === 401) {
