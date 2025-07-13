@@ -51,20 +51,3 @@ export const PostAnswer = async ({
     throw error;
   }
 };
-
-type GetQuestionProps = {
-  jwt_token: string;
-  id: string;
-};
-
-export const GetQuestionById = async ({ id, jwt_token }: GetQuestionProps) => {
-  try {
-    const response = await axios.get(`${config.BASE_URL}/question/${id}`, {
-      headers: { Authorization: jwt_token },
-    });
-
-    return response;
-  } catch (err) {
-    throw err;
-  }
-};

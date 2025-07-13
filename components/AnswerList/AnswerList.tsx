@@ -28,12 +28,6 @@ const AnswerList = ({ questionId }: AnswerListProps) => {
   }, [errorMessage]);
   useEffect(() => {
     const fetchAnswers = async () => {
-      if (!questionId) {
-        setErrorMessage("No question ID provided");
-
-        return;
-      }
-
       const jwt_token = Cookie.get("Forum-user-jwt-token");
       if (!jwt_token) {
         setErrorMessage("Not authenticated");

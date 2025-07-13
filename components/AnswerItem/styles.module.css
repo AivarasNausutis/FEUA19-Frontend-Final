@@ -83,3 +83,17 @@
 .plus {
   color: green;
 }
+.error {
+  color: #fff;
+  background: #e53935;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.25rem;
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(229, 57, 53, 0.08);
+  letter-spacing: 0.02em;
+  animation: shake 0.2s 2;
+}
