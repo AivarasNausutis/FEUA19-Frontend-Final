@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-import { getItem, setItem, removeItem } from "@/utils/localstorage";
+
 import Button from "../Button/Button";
 import Cookie from "js-cookie";
 import { config } from "@/config";
 import axios from "axios";
 import { QuestionType } from "@/types/Question";
+import AnswerList from "../AnswerList/AnswerList";
 
 export type QuestionCardProps = {
   question_text: string;
@@ -21,14 +22,6 @@ const QuestionCard = ({
   question,
 }: QuestionCardProps) => {
   const [errorMessage, setErrorMessage] = useState("");
-  const [count, setCount] = useState(() => {
-    const item = getItem(`count_${id}`);
-    return (item as number) || 0;
-  });
-
-  useEffect(() => {
-    setItem(`count_${id}`, count);
-  }, [count, id]);
 
   useEffect(() => {
     if (errorMessage) {
@@ -54,7 +47,6 @@ const QuestionCard = ({
       );
 
       if (response.status === 200) {
-        removeItem(`count_${id}`);
         window.location.reload();
       }
     } catch (err: any) {
@@ -66,9 +58,6 @@ const QuestionCard = ({
     }
   };
 
-  const handleLike = () => setCount((prev) => prev + 1);
-  const handleDislike = () => setCount((prev) => prev - 1);
-
   return (
     <div className={styles.card}>
       <div className={styles.header}>
@@ -78,30 +67,13 @@ const QuestionCard = ({
         <p className={styles.question}>{question_text}</p>
       </div>
       <div className={styles.actions}>
-        <div onClick={handleLike} className={styles.like}></div>
-        <div
-          className={
-            styles.count +
-            (count > 0
-              ? " " + styles.plus
-              : count < 0
-              ? " " + styles.minus
-              : "")
-          }
-        >
-          {count}
-        </div>
-        <div onClick={handleDislike} className={styles.dislike}></div>
         <Button title="Delete" type="DANGER" onClick={onDeleteQuestion} />
       </div>
       <div>
         {errorMessage && <p className={styles.error}>{errorMessage}</p>}
       </div>
-      <div className={styles.answerSection}>
-        <h4 className={styles.answerTitle}>Your answer</h4>
-        <input type="text" className={styles.answerInput} />
-        <Button title="Submit" onClick={() => {}} />
-      </div>
+
+      <AnswerList questionId={question.id} />
     </div>
   );
 };

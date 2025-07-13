@@ -1,0 +1,72 @@
+.answerList {
+  margin-top: 20px;
+}
+
+.answerTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.error {
+  text-align: center;
+  padding: 20px;
+  color: #dc3545;
+  background: #f8d7da;
+  border-radius: 6px;
+  margin: 10px 0;
+}
+
+.noAnswers {
+  text-align: center;
+  padding: 30px;
+  color: #6c757d;
+  font-style: italic;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 2px dashed #dee2e6;
+}
+
+.answerTitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.answerInput {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  transition: border 0.2s;
+}
+
+.answerInput:focus {
+  border: 1.5px solid #888;
+  outline: none;
+}
+.error {
+  color: #fff;
+  background: #e53935;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.25rem;
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(229, 57, 53, 0.08);
+  letter-spacing: 0.02em;
+  animation: shake 0.2s 2;
+}

@@ -5,7 +5,6 @@ import { QuestionType } from "../types/Question";
 import { getAllQuestions } from "@/api/question";
 import QuestionList from "@/components/QuestionList/QuestionList";
 import PageTemplate from "@/components/PageTemplate/PageTemplate";
-import { cleanupQuestionCounts } from "@/utils/localstorage";
 
 export default function Home() {
   const router = useRouter();
@@ -19,11 +18,8 @@ export default function Home() {
       const result = await getAllQuestions({ jwt_token: jwtToken! });
       const questions = result.data.questions;
 
-      const questionIds = questions.map((q: QuestionType) => q.id);
-      cleanupQuestionCounts(questionIds);
-
       setQuestions(questions);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.log(err);
 
       if (err.status === 401) {
