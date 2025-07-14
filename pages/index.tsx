@@ -21,16 +21,17 @@ export default function Home() {
       setQuestions(questions);
     } catch (err: unknown) {
       console.log(err);
-
-      if (err.status === 401) {
-        router.push("/login");
+      if (typeof err === "object" && err !== null && "status" in err) {
+        if ((err as any).status === 401) {
+          router.push("/login");
+        }
       }
     }
   };
 
   useEffect(() => {
     fetchAllQuestions();
-  }, []);
+  }, [fetchAllQuestions]);
 
   return (
     <PageTemplate>

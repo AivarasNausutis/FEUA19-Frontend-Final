@@ -12,7 +12,6 @@ const AnswerCard = ({
   answer_text,
   date,
   gained_likes_number,
-  question_id,
 }: AnswerType) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [likeCount, setLikeCount] = useState(() => {

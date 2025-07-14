@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Cookie from "js-cookie";
 
-const index = () => {
+const QuestionPage = () => {
   const router = useRouter();
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const index = () => {
     if (!jwtToken) {
       router.push("/login");
     }
-  }, []);
+  }, [router]);
 
   return (
     <PageTemplate>
@@ -20,4 +20,4 @@ const index = () => {
     </PageTemplate>
   );
 };
-export default index;
+export default QuestionPage;

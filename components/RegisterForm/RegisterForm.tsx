@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { registerUser } from "@/api/user";
 import Button from "../Button/Button";
+import Link from "next/link";
 
 const RegisterForm = () => {
   const [name, setName] = useState("");
@@ -24,11 +25,15 @@ const RegisterForm = () => {
       router.push("/login");
       setErrorMessage("");
     } catch (err) {
-      if (err.status === 400) {
-        setErrorMessage("Registration failed: bad Request");
-      }
-      if (err.status === 401) {
-        setErrorMessage("Registration failed: bad credentials");
+      if (typeof err === "object" && err !== null && "status" in err) {
+        if ((err as any).status === 400) {
+          setErrorMessage("Registration failed: bad Request");
+        }
+        if ((err as any).status === 401) {
+          setErrorMessage("Registration failed: bad credentials");
+        }
+      } else {
+        setErrorMessage("An error occurred during registration.");
       }
     }
   };
@@ -64,7 +69,7 @@ const RegisterForm = () => {
         <Button title="Sign up" onClick={onRegister} />
         {errorMessage && <p className={styles.error}>{errorMessage}</p>}
         <p className={styles.signup}>
-          Already have an account? <a href="/login">Log in</a>
+          Already have an account? <Link href="/login">Log in</Link>
         </p>
       </div>
     </div>

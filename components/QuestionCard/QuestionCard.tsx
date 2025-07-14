@@ -11,16 +11,10 @@ import AnswerList from "../AnswerList/AnswerList";
 export type QuestionCardProps = {
   question_text: string;
   date: Date;
-  id: string;
   question: QuestionType;
 };
 
-const QuestionCard = ({
-  question_text,
-  date,
-  id,
-  question,
-}: QuestionCardProps) => {
+const QuestionCard = ({ question_text, date, question }: QuestionCardProps) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {

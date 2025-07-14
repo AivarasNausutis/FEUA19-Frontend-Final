@@ -23,16 +23,16 @@ const Header = ({ type = "SHOW" }: HeaderProps) => {
         <nav className={`${styles.nav} ${styles[type]}`}>
           <ul>
             <li>
-              <a href="/question">Ask a question</a>
+              <Link href="/question">Ask a question</Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/login"
-                onClick={handleLogout}
                 className={styles.navLink}
+                onClick={handleLogout}
               >
                 Log Out
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
