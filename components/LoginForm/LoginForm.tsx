@@ -20,17 +20,14 @@ const LoginForm = () => {
       Cookies.set("Forum-user-jwt-token", response.data.jwt_token);
       router.push("/");
       setErrorMessage("");
-    } catch (err: unknown) {
-      if (
-        typeof err === "object" &&
-        err !== null &&
-        "status" in err &&
-        typeof (err as { status?: number }).status === "number" &&
-        (err as { status: number }).status === 401
-      ) {
-        setErrorMessage("You have provided bad credentials");
+    } catch (err: any) {
+      const message = err?.response?.data?.message;
+
+      if (typeof message === "string") {
+        setErrorMessage(message);
       } else {
-        setErrorMessage("An error occurred during login.");
+        setErrorMessage("An error occurred while logging in.");
+        console.error(err);
       }
     }
   };

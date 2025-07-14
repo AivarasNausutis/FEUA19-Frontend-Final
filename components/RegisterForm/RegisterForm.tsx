@@ -24,21 +24,14 @@ const RegisterForm = () => {
       Cookies.set("Forum-user-jwt-token", response.data.jwt_token);
       router.push("/login");
       setErrorMessage("");
-    } catch (err: unknown) {
-      if (
-        typeof err === "object" &&
-        err !== null &&
-        "status" in err &&
-        typeof (err as { status?: number }).status === "number"
-      ) {
-        if ((err as { status: number }).status === 400) {
-          setErrorMessage("Registration failed: bad Request");
-        }
-        if ((err as { status: number }).status === 401) {
-          setErrorMessage("Registration failed: bad credentials");
-        }
+    } catch (err: any) {
+      const message = err?.response?.data?.message;
+
+      if (typeof message === "string") {
+        setErrorMessage(message);
       } else {
         setErrorMessage("An error occurred during registration.");
+        console.error(err);
       }
     }
   };

@@ -49,17 +49,13 @@ const AnswerList = ({ questionId }: AnswerListProps) => {
   }, [questionId]);
 
   const onSubmit = async () => {
-    if (!answer_text.trim()) {
-      setErrorMessage("Please enter an answer");
-    }
-
     try {
       const jwtToken = Cookie.get("Forum-user-jwt-token");
 
       const response = await PostAnswer({
         jwt_token: jwtToken!,
         id: questionId,
-        answer: { answer_text: answer_text.trim() },
+        answer: { answer_text: answer_text },
       });
 
       if (response.status === 200 || response.status === 201) {
