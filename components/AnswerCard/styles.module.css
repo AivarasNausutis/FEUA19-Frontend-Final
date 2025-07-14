@@ -51,8 +51,8 @@
 .like {
   background-image: url("../../assets/images/like.svg");
   background-size: contain;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -62,8 +62,8 @@
 .dislike {
   background-image: url("../../assets/images/dislike.svg");
   background-size: contain;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
   cursor: pointer;
   display: flex;
   align-items: center;

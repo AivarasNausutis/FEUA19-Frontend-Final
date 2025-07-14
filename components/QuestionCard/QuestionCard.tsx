@@ -52,6 +52,9 @@ const QuestionCard = ({
     } catch (err: any) {
       if (err.response.status === 403) {
         setErrorMessage("This question does not belong to you");
+      }
+      if (err.response.status === 401) {
+        setErrorMessage("Unauthorized access");
       } else {
         console.log(err);
       }

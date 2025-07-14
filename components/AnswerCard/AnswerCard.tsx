@@ -7,7 +7,7 @@ import axios from "axios";
 import { config } from "@/config";
 import { getItem, setItem, removeItem } from "@/utils/localstorage";
 
-const AnswerItem = ({
+const AnswerCard = ({
   id,
   answer_text,
   date,
@@ -92,4 +92,4 @@ const AnswerItem = ({
   );
 };
 
-export default AnswerItem;
+export default AnswerCard;

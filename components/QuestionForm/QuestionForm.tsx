@@ -5,7 +5,6 @@ import { postQuestion } from "../../api/question";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
 
 const QuestionForm = () => {
   const router = useRouter();
@@ -14,16 +13,16 @@ const QuestionForm = () => {
 
   const onSubmit = async () => {
     try {
-      const jwtToken = Cookies.get("Forum-user-jwt-token");
+      const jwt_token = Cookies.get("Forum-user-jwt-token");
 
       const response = await postQuestion({
-        jwt_token: jwtToken!,
+        jwt_token: jwt_token!,
         question: { question_text },
       });
 
       if (response.status === 200 || response.status === 201) {
         console.log("Question created successfully");
-        toast.success("Question created successfully");
+
         setTimeout(() => {
           router.push("/");
         }, 2000);
@@ -51,7 +50,6 @@ const QuestionForm = () => {
           }}
         />
         <Button title="Submit a question" onClick={onSubmit} />
-        <ToastContainer />
       </div>
     </div>
   );

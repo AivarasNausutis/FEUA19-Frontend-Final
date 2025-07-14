@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import AnswerItem from "../AnswerItem/AnswerItem";
+
 import { getAllAnswers, PostAnswer } from "@/api/answers";
 import Cookie from "js-cookie";
 import styles from "./styles.module.css";
 import Button from "../Button/Button";
 
 import { AnswerType } from "@/types/Answer";
+import AnswerCard from "../AnswerCard/AnswerCard";
 
 type AnswerListProps = {
   questionId: string;
@@ -93,7 +94,7 @@ const AnswerList = ({ questionId }: AnswerListProps) => {
       </div>
       <h3 className={styles.answerTitle}>Answers ({answers.length})</h3>
       {answers.map((a) => (
-        <AnswerItem
+        <AnswerCard
           key={a.id}
           id={a.id}
           answer_text={a.answer_text}
