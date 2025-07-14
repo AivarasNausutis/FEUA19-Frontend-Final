@@ -20,11 +20,15 @@ const LoginForm = () => {
       Cookies.set("Forum-user-jwt-token", response.data.jwt_token);
       router.push("/");
       setErrorMessage("");
-    } catch (err) {
-      if (typeof err === "object" && err !== null && "status" in err) {
-        if ((err as any).status === 401) {
-          setErrorMessage("You have provided bad credentials");
-        }
+    } catch (err: unknown) {
+      if (
+        typeof err === "object" &&
+        err !== null &&
+        "status" in err &&
+        typeof (err as { status?: number }).status === "number" &&
+        (err as { status: number }).status === 401
+      ) {
+        setErrorMessage("You have provided bad credentials");
       } else {
         setErrorMessage("An error occurred during login.");
       }
@@ -58,7 +62,7 @@ const LoginForm = () => {
         <Button title="Sign in" onClick={onLogin} />
         {errorMessage && <p className={styles.error}>{errorMessage}</p>}
         <p className={styles.signup}>
-          Don't have an account? <Link href="/signup">Sign up now</Link>
+          Don&apos;t have an account? <Link href="/signup">Sign up now</Link>
         </p>
       </div>
     </div>

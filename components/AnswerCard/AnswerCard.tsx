@@ -50,10 +50,27 @@ const AnswerCard = ({
         removeItem(`answer_likes_${id}`);
         window.location.reload();
       }
-    } catch (err: any) {
-      if (err.response.status === 403) {
-        setErrorMessage("This answer does not belong to you");
+    } catch (err: unknown) {
+      if (
+        typeof err === "object" &&
+        err !== null &&
+        "response" in err &&
+        typeof (
+          err as { response?: { data?: { message?: string }; status?: number } }
+        ).response === "object" &&
+        (err as { response?: { data?: { message?: string }; status?: number } })
+          .response !== null
+      ) {
+        const response = (
+          err as { response: { data?: { message?: string }; status?: number } }
+        ).response;
+        if (response.data && typeof response.data.message === "string") {
+          setErrorMessage(response.data.message);
+        } else {
+          setErrorMessage("An error occurred while deleting the answer.");
+        }
       } else {
+        setErrorMessage("An error occurred while deleting the answer.");
         console.log(err);
       }
     }

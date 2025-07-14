@@ -11,27 +11,28 @@ export default function Home() {
 
   const [questions, setQuestions] = useState<QuestionType[]>([]);
 
-  const fetchAllQuestions = async () => {
-    try {
-      const jwtToken = Cookie.get("Forum-user-jwt-token");
-
-      const result = await getAllQuestions({ jwt_token: jwtToken! });
-      const questions = result.data.questions;
-
-      setQuestions(questions);
-    } catch (err: unknown) {
-      console.log(err);
-      if (typeof err === "object" && err !== null && "status" in err) {
-        if ((err as any).status === 401) {
+  useEffect(() => {
+    const fetchAllQuestions = async () => {
+      try {
+        const jwtToken = Cookie.get("Forum-user-jwt-token");
+        const result = await getAllQuestions({ jwt_token: jwtToken! });
+        const questions = result.data.questions;
+        setQuestions(questions);
+      } catch (err: unknown) {
+        console.log(err);
+        if (
+          typeof err === "object" &&
+          err !== null &&
+          "status" in err &&
+          typeof (err as { status?: number }).status === "number" &&
+          (err as { status: number }).status === 401
+        ) {
           router.push("/login");
         }
       }
-    }
-  };
-
-  useEffect(() => {
+    };
     fetchAllQuestions();
-  }, [fetchAllQuestions]);
+  }, [router]);
 
   return (
     <PageTemplate>
