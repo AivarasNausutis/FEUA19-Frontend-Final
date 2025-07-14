@@ -1,8 +1,6 @@
 import { config } from "@/config";
-import { QuestionType } from "@/types/Question";
+
 import axios from "axios";
-import { useRouter } from "next/router";
-import Cookie from "js-cookie";
 
 type getAllQuestionsProps = {
   jwt_token: string;

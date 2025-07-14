@@ -13,7 +13,6 @@ const QuestionList = ({ questions }: QuestionListProps) => {
         return (
           <QuestionCard
             key={q.id}
-            id={q.id}
             question_text={q.question_text}
             date={new Date(q.date)}
             question={q}
